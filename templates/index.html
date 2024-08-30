@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depth Map Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div id="uiPanel">
+        <h1>Depth Map Generator</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <button type="submit">Generate 3D Depth</button>
+        </form>
+
+        <div id="loading" style="display:none;">
+            <p>Generating depth... Please wait.</p>
+        </div>
+
+        <div id="controls">
+            <!-- Controls for displacement and FOV -->
+            <label for="displacementSlider">Displacement Scale: <span id="displacementValue">0.5</span></label>
+            <input type="range" id="displacementSlider" min="-2" max="2" step="0.01" value="0.5">
+            <br>
+            <label for="fovSlider">Field of View: <span id="fovValue">45</span>°</label>
+            <input type="range" id="fovSlider" min="30" max="120" step="1" value="45">
+            <br>
+            <button id="resetCameraButton">Reset Camera</button>
+            <br>
+            <button id="animateButton">Animate</button>
+        </div>
+
+    </div>
+
+    <div id="3dContainer"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
